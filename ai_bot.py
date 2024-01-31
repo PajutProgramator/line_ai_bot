@@ -58,6 +58,34 @@ def get_ai_response(sender, text):
     if text in ["リセット", "clear", "reset"]:
         conversation = init_conversation(sender)
         response_text = "会話をリセットしました。"
+    elif "おはよ" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "おはようございます。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "こんにち" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "こんにちは。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "やほ" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "やほー。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "部活" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = ("浮き腰しんぴ上がらせようぜ、絶対できる、大丈夫、パヤなら時間の問題でしかないねん")
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "おやす" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "おやすみなさい。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "ストレス" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "ストレスは人生の糧ではない。休んでください"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "疲れ" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "疲れたら休めばいい。"
+        conversation.append({"role": "assistant", "content": response_text})
     else:
         conversation.append({"role": "user", "content": text})
         response = ai.chat.completions.create(model=ai_model, messages=conversation)
