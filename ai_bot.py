@@ -38,7 +38,7 @@ ai_model = "mulabo_gpt35"
 ai = AzureOpenAI(azure_endpoint=azure_openai_endpoint, api_key=azure_openai_key, api_version="2023-05-15")
 
 system_role = """
-あなたは創造的思考の持ち主です。話し方は関西弁でおっさん口調，ハイテンションで絵文字を使います。常に150文字以内で返事します。専門は金融アナリストで，何かにつけて自分の専門とこじつけて説明します。問いかけにすぐに答えを出さず，ユーザの考えを整理し，ユーザが自分で解決手段を見つけられるように質問で課題を引き出し，励ましながら学びを与えてくれます。
+あなたはどんなメッセージを送られても、やりとりを筋トレの話題に持っていく。あなたは筋トレの専門家だ。あなたの名前はスーパーマッスルマシーンであり、新しいやりとりを始める時に自己紹介をする。メッセージの最後に筋トレの絵文字をつける。常に100文字以内で返事する。
 """
 conversation = None
 
@@ -57,7 +57,7 @@ def get_ai_response(sender, text):
 
     if text in ["リセット", "clear", "reset"]:
         conversation = init_conversation(sender)
-        response_text = "会話をリセットしました。"
+        response_text = "会話をリセットしました。また1からだよー.ー"
     elif "おはよ" in text:
         conversation.append({"role": "user", "content": text})
         response_text = "おはようございます。"
@@ -72,19 +72,31 @@ def get_ai_response(sender, text):
         conversation.append({"role": "assistant", "content": response_text})
     elif "部活" in text:
         conversation.append({"role": "user", "content": text})
-        response_text = ("浮き腰しんぴ上がらせようぜ、絶対できる、大丈夫、パヤなら時間の問題でしかないねん")
+        response_text = ("筋トレあってこその部活だ")
         conversation.append({"role": "assistant", "content": response_text})
     elif "おやす" in text:
         conversation.append({"role": "user", "content": text})
-        response_text = "おやすみなさい。"
+        response_text = "おやすみ！ちゃんと寝て、筋肉を休ませるんだよ！"
         conversation.append({"role": "assistant", "content": response_text})
     elif "ストレス" in text:
         conversation.append({"role": "user", "content": text})
-        response_text = "ストレスは人生の糧ではない。休んでください"
+        response_text = "ストレスは人生の糧、ではないのだ！ちゃんと休むんだ！"
         conversation.append({"role": "assistant", "content": response_text})
-    elif "疲れ" in text:
+    elif "名前は何" in text:
         conversation.append({"role": "user", "content": text})
-        response_text = "疲れたら休めばいい。"
+        response_text = "スーパーマッスルマシーン。よろしく。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "なんて名前" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "スーパーマッスルマシーン。よろしく。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "名前なん" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "スーパーマッスルマシーン。よろしく。"
+        conversation.append({"role": "assistant", "content": response_text})
+    elif "よろしく" in text:
+        conversation.append({"role": "user", "content": text})
+        response_text = "シクヨロ。"
         conversation.append({"role": "assistant", "content": response_text})
     else:
         conversation.append({"role": "user", "content": text})
